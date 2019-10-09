@@ -7,8 +7,12 @@ def run():
     logger = logging.getLogger()
     logger.setLevel(logging.INFO)
 
-    parser = Parser()
+    from app.client import Client
+    data = {'phone': '1111111'}
+    Client.send(data=data)
 
-    while True:
-        parser.parse()
-        sleep(60)
+    # parser = Parser()
+    #
+    # while True:
+    #     parser.parse()
+    #     sleep(60)

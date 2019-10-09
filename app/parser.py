@@ -1,4 +1,5 @@
 import logging
+import platform
 from time import sleep
 
 from selenium import webdriver
@@ -24,8 +25,12 @@ class Parser:
         chrome_options.add_argument("--log-level=3")
         chrome_options.add_argument("--disable-setuid-sandbox")
 
-        self.__driver = webdriver.Chrome(executable_path="/Parser/app/files/chromedriver",
-                                         chrome_options=chrome_options)
+        if platform.system() == 'Linux':
+            self.__driver = webdriver.Chrome(executable_path="./app/files/chromedriver",
+                                             chrome_options=chrome_options)
+        else:
+            self.__driver = webdriver.Chrome(executable_path="./app/files/chromedriver.exe",
+                                             chrome_options=chrome_options)
 
         logging.info("Browser start!")
 
